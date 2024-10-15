@@ -1,0 +1,54 @@
+{
+	"Introduce variable": {
+		"prefix": "let",
+		"body": [
+			"{% let $1 = $2 %}",
+			"$3"
+		],
+		"description": "Introduce new variable"
+	},
+	"If condition": {
+		"prefix": "if",
+		"body": [
+			"{% if $1 %}",
+			"    $2",
+			"{% endif %}"
+		],
+		"description": "If condition"
+	},
+	"For": {
+		"prefix": "for",
+		"body": [
+			"{% for $1 of $2 %}",
+			"    $3",
+			"{% endfor %}"
+		],
+		"description": "For cycle"
+	},
+	"Import": {
+		"prefix": "import",
+		"body": [
+			"{% import $1 from '$2' %}",
+			"$3"
+		],
+		"description": "Import"
+	},
+	"Use block": {
+		"prefix": "use",
+		"body": [
+			"{% $1 %}",
+			"    $2",
+			"{% end $1 %}"
+		],
+		"description": "Use block"
+	},
+	"Define block": {
+		"prefix": "defblock",
+		"body": [
+			"{% block $1 %}",
+			"    $2",
+			"{% endblock %}"
+		],
+		"description": "Define block"
+	}
+}

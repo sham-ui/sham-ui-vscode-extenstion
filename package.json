@@ -1,0 +1,45 @@
+{
+  "name": "sham-ui-vscode-extenstion",
+  "displayName": "sham-ui-vscode-extenstion",
+  "description": "sham-ui extenstion for vscode",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.1"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "sham-ui",
+        "extensions": [".sht",".sfc"],
+        "configuration": "./languages/sham-ui-language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "sham-ui",
+        "scopeName": "source.sham-ui",
+        "path": "./syntaxes/sham-ui.tmLanguage.json",
+        "embeddedLanguages": {
+					"text.html.basic": "html",
+					"source.js": "javascript"
+				},
+        "unbalancedBracketScopes": [
+          "keyword.operator.relational",
+          "storage.type.function.arrow",
+          "keyword.operator.bitwise.shift",
+          "meta.brace.angle",
+          "punctuation.definition.tag"
+        ]
+      }
+    ],
+    "snippets": [
+			{
+				"language": "sham-ui",
+				"path": "./snippets.json"
+			}
+		]
+  }
+}

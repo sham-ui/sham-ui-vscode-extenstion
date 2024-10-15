@@ -1,0 +1,480 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "sham-ui",
+	"scopeName": "source.sham-ui",
+	"patterns": [
+		{
+			"include": "#template"
+		},
+		{
+			"include": "#script"
+		},
+		{
+			"include": "#sham-ui-template"
+		},
+		{
+			"include": "text.html.derivative"
+		}
+	],
+	"repository": {
+		"template": {
+			"begin": "(<)(template)\\s*(>)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.begin.html.sham-ui"
+				},
+				"2": {
+					"name": "entity.name.tag.$1.html.sham-ui"
+				},
+				"3": {
+					"name": "punctuation.definition.tag.end.html.sham-ui"
+				}
+			},
+			"end": "(</)(\\2)\\s*(>)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.begin.html.sham-ui"
+				},
+				"2": {
+					"name": "entity.name.tag.$2.html.sham-ui"
+				},
+				"3": {
+					"name": "punctuation.definition.tag.end.html.sham-ui"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#sham-ui-template"
+				},
+				{
+					"include": "text.html.derivative"
+				}
+			]
+		},
+		"script": {
+			"begin": "(<)(script)\\s*(>)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.begin.html.sham-ui"
+				},
+				"2": {
+					"name": "entity.name.tag.$1.html.sham-ui"
+				},
+				"3": {
+					"name": "punctuation.definition.tag.end.html.sham-ui"
+				}
+			},
+			"end": "(</)(\\2)\\s*(>)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.tag.begin.html.sham-ui"
+				},
+				"2": {
+					"name": "entity.name.tag.$2.html.sham-ui"
+				},
+				"3": {
+					"name": "punctuation.definition.tag.end.html.sham-ui"
+				}
+			},
+			"patterns": [
+				{
+					"include": "source.js"
+				}
+			]
+		},
+		"sham-ui-template": {
+			"patterns": [
+				{"include": "#import"},
+				{"include": "#if"},
+				{"include": "#for"},
+				{"include": "#defblock"},
+				{"include": "#let"},
+				{"include": "#unsafe"},
+				{"include": "#debugger"},
+				{"include": "#block"},
+				{"include": "#expression"}
+			]
+		},
+		"import": {
+			"begin": "({%)\\s*(import)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.control.begin.sham-ui"
+				},
+				"2": {
+					"name": "keyword.control.import.sham-ui"
+				}
+			},
+			"end": "(%})",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.control.end.sham-ui"
+				}
+			},
+			"patterns": [
+				{
+					"match": "from",
+					"name": "keyword.control.from.sham-ui"
+				},
+				{"include": "#string-single-quoted"},
+				{"include": "#string-double-quoted"},
+				{"include": "#component"}
+			]
+		},
+		"if": {
+			"patterns": [
+				{
+					"begin": "({%)\\s*(if)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.if.sham-ui"
+						}
+
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				},
+				{
+					"match": "({%)\\s*(else)\\s*(%})",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.else.sham-ui"
+						},
+						"3": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					}
+				},
+				{
+					"match": "({%)\\s*(endif)\\s*(%})",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.endif.sham-ui"
+						},
+						"3": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					}
+				}
+			]
+		},
+		"for": {
+			"patterns": [
+				{
+					"begin": "({%)\\s*(for)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.for.sham-ui"
+						}
+
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"match": "of",
+							"name": "keyword.control.of.sham-ui"
+						},
+						{
+							"include": "source.js"
+						}
+					]
+				},
+				{
+					"match": "({%)\\s*(endfor)\\s*(%})",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.endfor.sham-ui"
+						},
+						"3": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					}
+				}
+			]
+		},
+		"defblock": {
+			"patterns": [
+				{
+					"begin": "({%)\\s*(defblock)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.defblock.sham-ui"
+						}
+
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				},
+				{
+					"begin": "({%)\\s*(block)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.defblock.sham-ui"
+						}
+
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				},
+				{
+					"match": "({%)\\s*(endblock)\\s*(%})",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.endblock.sham-ui"
+						},
+						"3": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					}
+				}
+			]
+		},
+		"block": {
+			"patterns": [
+				{
+					"begin": "({%)\\s*(end)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.end.sham-ui"
+						}
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				},
+				{
+					"begin": "({%)\\s*",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						}
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"match": "with",
+							"name": "keyword.control.with.sham-ui"
+						},
+						{
+							"include": "source.js"
+						}
+					]
+				}
+			]
+		},
+		"let": {
+			"patterns": [
+				{
+					"begin": "({%)\\s*(let)\\s*([a-zA-Z0-9]+)\\s*=\\s*",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.let.sham-ui"
+						},
+						"3": {
+							"name": "variable.language"
+						}
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				}
+			]
+		},
+		"unsafe": {
+			"patterns": [
+				{
+					"begin": "({%)\\s*(unsafe)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.unsafe.sham-ui"
+						}
+					},
+					"end": "(%})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				}
+			]
+		},
+		"debugger": {
+			"patterns": [
+				{
+					"match": "({%)\\s*(debugger)\\s*(%})",
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.control.begin.sham-ui"
+						},
+						"2": {
+							"name": "keyword.control.debugger.sham-ui"
+						},
+						"3": {
+							"name": "punctuation.definition.control.end.sham-ui"
+						}
+					}
+				}
+			]
+		},
+		"expression": {
+			"patterns": [
+				{
+					"begin": "({{)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.expression.begin.sham-ui"
+						}
+					},
+					"end": "(}})",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.definition.expression.end.sham-ui"
+						}
+					},
+					"patterns": [
+						{
+							"include": "source.js"
+						}
+					]
+				}
+			]
+		},
+		"component": {
+			"match": "([a-zA-Z0-9]+)",
+			"name": "entity.name.component.$1.sham-ui"
+		},
+		"string-single-quoted": {
+			"name": "string.quoted.single.sham-ui",
+			"begin": "'",
+			"beginCaptures": {
+				"0": {
+				"name": "punctuation.definition.string.begin.sham-ui"
+				}
+			},
+			"end": "'",
+			"endCaptures": {
+				"0": {
+				"name": "punctuation.definition.string.end.sham-ui"
+				}
+			},
+			"patterns": [
+				{
+					"name": "constant.character.escape.sham-ui",
+					"match": "\\\\'"
+				}
+			]
+		},
+		"string-double-quoted": {
+			"name": "string.quoted.double.sham-ui",
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+				"name": "punctuation.definition.string.begin.sham-ui"
+				}
+			},
+			"end": "\"",
+			"endCaptures": {
+				"0": {
+				"name": "punctuation.definition.string.end.sham-ui"
+				}
+			},
+			"patterns": [
+				{
+					"name": "constant.character.escape.sham-ui",
+					"match": "\\\\\""
+				}
+			]
+		}
+	}
+}
