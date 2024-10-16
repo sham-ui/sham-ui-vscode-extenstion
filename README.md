@@ -1,4 +1,4 @@
-# sham-ui-vscode-extenstion README
+# sham-ui-vscode-extenstion
 
 VS code extension for `sham-ui`
 
